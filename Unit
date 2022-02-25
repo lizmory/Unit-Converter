@@ -1,0 +1,83 @@
+def ConvertWeight(weight, unity):
+
+    if unity.upper() =="KG":
+        returningWeight= 2.2 * weight
+        return returningWeight
+    else:
+        returningWeight= weight * 0.453
+        return returningWeight
+ 
+def ConvertLength(length, unity):
+
+    if unity.upper() =="M":
+        returningLength = length *3.28
+        return returningLength
+    else:
+        returningLength =length*0.30
+        return returningLength
+
+def IsValidWeightUnity(unity):
+
+    if (unity.upper()=="KG" or unity.upper()=="LB"):
+        return True
+    else:
+        return False
+
+def IsValidLengthUnity(unity):
+
+    if(unity.upper()=="M" or unity.upper()=="FT"):
+        return True
+    else:
+        return False
+
+def IsValidMenuOption(option):
+    if (option=="1" or option=="2"):
+        return True
+    else:
+        return False
+
+def ReturningOppositegWeightUnit(unit):
+    
+    if unit.upper()=="KG":
+        return "lb"
+    else:
+        return "kg"
+
+def ReturningOppositeLengthtUnity(unity):
+    if unity.upper() == "FT":
+        return "m"
+
+    else:
+        return "ft"
+
+def Menu():
+    
+    error =True
+    while(error):
+        userOption = input("what do you want to convert? 1)weight 2)length: ")
+        if(not IsValidMenuOption(userOption)):
+            print("Entry is not a valid option")
+
+        else:
+            error = False
+            if userOption=="1":
+                userWeight = float(input("Please, enter weight: "))
+                userUnity = input("Please, enter the unity of the weight: ")
+                if not IsValidWeightUnity(userUnity):
+                    print("You have not entered a valid weight unity")
+                else:
+                    result = ConvertWeight(userWeight, userUnity)
+                    oppositeUnity = ReturningOppositegWeightUnit(userUnity)
+                    print("equivalent weight: {0:f}{1}".format(result, oppositeUnity))
+         
+            else:
+                userLength = float(input("Please, enter length: "))
+                userUnity = input("Please, enter the unity of the length: ")
+                if not IsValidLengthUnity(userUnity):
+                    print("You have not entered a valid length")
+                else:
+                    result = ConvertLength(userLength, userUnity)
+                    oppositeUnity = ReturningOppositeLengthtUnity(userUnity)
+                    print("equivalent length: {0:f}{1}".format(result, oppositeUnity))
+
+Menu()
