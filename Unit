@@ -1,4 +1,4 @@
-def ConvertWeight(weight, unity):
+def ConvertWeight(weight, unity): 
 
     if unity.upper() =="KG":
         returningWeight= 2.2 * weight
@@ -6,6 +6,7 @@ def ConvertWeight(weight, unity):
     else:
         returningWeight= weight * 0.453
         return returningWeight
+        
  
 def ConvertLength(length, unity):
 
@@ -15,6 +16,7 @@ def ConvertLength(length, unity):
     else:
         returningLength =length*0.30
         return returningLength
+        
 
 def IsValidWeightUnity(unity):
 
@@ -35,6 +37,7 @@ def IsValidMenuOption(option):
         return True
     else:
         return False
+        
 
 def ReturningOppositegWeightUnit(unit):
     
@@ -42,6 +45,7 @@ def ReturningOppositegWeightUnit(unit):
         return "lb"
     else:
         return "kg"
+        
 
 def ReturningOppositeLengthtUnity(unity):
     if unity.upper() == "FT":
@@ -49,6 +53,7 @@ def ReturningOppositeLengthtUnity(unity):
 
     else:
         return "ft"
+        
 
 def Menu():
     
