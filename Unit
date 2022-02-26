@@ -1,88 +1,108 @@
-def ConvertWeight(weight, unity): 
+# Adriana Lizmory Cuellar (Liz Cuellar)
+# Student Number 8672918
+#This code handles unit conversion as follows: 
+#Converts the supplied weight/length from the current user-specified unit to the opposite ie kg to lb or lb to kg; meters to feet or feet to meters.
 
-    if unity.upper() =="KG":
-        returningWeight= 2.2 * weight
-        return returningWeight
-    else:
-        returningWeight= weight * 0.453
-        return returningWeight
-        
- 
-def ConvertLength(length, unity):
-
-    if unity.upper() =="M":
-        returningLength = length *3.28
-        return returningLength
-    else:
-        returningLength =length*0.30
-        return returningLength
-        
-
-def IsValidWeightUnity(unity):
-
-    if (unity.upper()=="KG" or unity.upper()=="LB"):
-        return True
-    else:
-        return False
-
-def IsValidLengthUnity(unity):
-
-    if(unity.upper()=="M" or unity.upper()=="FT"):
-        return True
-    else:
-        return False
-
-def IsValidMenuOption(option):
-    if (option=="1" or option=="2"):
-        return True
-    else:
-        return False
-        
-
-def ReturningOppositegWeightUnit(unit):
+def ConvertWeight(weight, unity):   # This method returns double type value that represent the weight converting  for one unit to oposit unit
+                                    # This method accepts two parameters. 
+                                    # The weight parameter is the quantity to be converted and the unity parameter is the unit of weight to convert
     
-    if unit.upper()=="KG":
-        return "lb"
+    if unity.upper() =="KG":            # Change unity value to uppercase
+        returningWeight= 2.2 * weight   # Multiply weight parameter to 2.2 the result is save 
+        return returningWeight          # and return in returningWeight variable
     else:
-        return "kg"
-        
+        returningWeight= weight * 0.453 # If unity.upper() != "KG" is because unity.upper() == "LB" convert to KG the weigh value
+        return returningWeight          # and return in returningWeight variable
+ 
 
-def ReturningOppositeLengthtUnity(unity):
-    if unity.upper() == "FT":
+
+def ConvertLength(length, unity):   # This method returns double type value that represent the length converting  for one unit to oposit unit
+                                    # This method accepts two parameters. 
+                                    # The length parameter is the quantity to be converted and the unity parameter is the unit of length to convert
+
+
+    if unity.upper() =="M":             # Change unity value to uppercase
+        returningLength = length *3.28  # Multiply length parameter to 3.28 the result is save
+        return returningLength          # and return in returningLength variable
+    else:
+        returningLength =length*0.30    # If unity.upper() != "M" is because unity.upper() == "FT" convert to M the length value
+        return returningLength           # and return in returningLenth variable
+ 
+
+
+# Auxiliaries Methods
+# These methods validate user information 
+
+def IsValidWeightUnity(unity): # This method receives by parametrer the unit.
+
+    if (unity.upper()=="KG" or unity.upper()=="LB"):    #Convert to uppercase using the upper() method and validate that is equal to some two units KG or LB
+        return True                                     # Return true if unity.upper == KG or LB               
+    else:   
+        return False
+
+
+def IsValidLengthUnity(unity):  # This method receives by parametrer the unit.                  
+
+    if(unity.upper()=="M" or unity.upper()=="FT"):       #Convert to uppercase using the upper() method and validate that is equal to some two units M or FT
+        return True                                        # Return true if unity.upper == M or FT
+    else:
+        return False
+
+
+def IsValidMenuOption(option):         # This method validate the user type only 1 or 2 the values of menu
+    if (option=="1" or option=="2"):    # Return true only if option parameter is equal 1 or 2
+        return True
+    else:
+        return False
+
+
+
+def OppositeWeight(unit):  #This method return opposity unit to typed thas was saved in unit parameter
+    
+    if unit.upper()=="KG":  #Change the type information to lb if information was KG  
+        return "lb"
+    else:                   #Otherwise if information was lb return kg
+        return "kg"
+
+
+
+def OppositeLength(unity):      #This method return opposity unit to typed thas was saved in unit parameter
+    if unity.upper() == "FT":   #Change the type information to m if information was FT
         return "m"
 
-    else:
+    else:                       # Oterwise if information was M return ft
         return "ft"
-        
 
-def Menu():
+
+
+def Menu(): # This is menu method "PRINCIPAL METHOD"
     
-    error =True
+    error =True # A variable boolean is declared and started in TRUE for get into the While
     while(error):
-        userOption = input("what do you want to convert? 1)weight 2)length: ")
-        if(not IsValidMenuOption(userOption)):
-            print("Entry is not a valid option")
+        userOption = input("what do you want to convert? 1)weight 2)length: ") # Ask to the user information to convert. 
+        if(not IsValidMenuOption(userOption)): # Called validMenuOption Method to validate user information If user typed is not valid information then...
+            print("Entry is not a valid option") # ... Error message
 
-        else:
-            error = False
-            if userOption=="1":
+        else: # Otherwise error is False
+            error = False # This instruction stopped while loop 
+            if userOption=="1":     # If the user choose option 1 we have to deal with weight 
                 userWeight = float(input("Please, enter weight: "))
                 userUnity = input("Please, enter the unity of the weight: ")
-                if not IsValidWeightUnity(userUnity):
-                    print("You have not entered a valid weight unity")
-                else:
-                    result = ConvertWeight(userWeight, userUnity)
-                    oppositeUnity = ReturningOppositegWeightUnit(userUnity)
-                    print("equivalent weight: {0:f}{1}".format(result, oppositeUnity))
+                if not IsValidWeightUnity(userUnity): # Called IsvalidMenuOption Method to validate user information If user typed is not valid information then...
+                    print("You have not entered a valid weight unity")  # ... Error message
+                else: # If the information that user type was a valid option...
+                    result = ConvertWeight(userWeight, userUnity) # ...convert weight and save the information in result variable
+                    oppositeUnity = OppositeWeight(userUnity) #The oppositeWeight is called and save the opposity unit in oppositeUnity
+                    print("equivalent weight: {0:f}{1}".format(result, oppositeUnity)) # Print the result with opposite unity
          
-            else:
-                userLength = float(input("Please, enter length: "))
-                userUnity = input("Please, enter the unity of the length: ")
-                if not IsValidLengthUnity(userUnity):
-                    print("You have not entered a valid length")
-                else:
-                    result = ConvertLength(userLength, userUnity)
-                    oppositeUnity = ReturningOppositeLengthtUnity(userUnity)
-                    print("equivalent length: {0:f}{1}".format(result, oppositeUnity))
+            else: # If the user choose option 2 we have to deal with length
+                userLength = float(input("Please, enter length: ")) 
+                userUnity = input("Please, enter the unity of the length: ") 
+                if not IsValidLengthUnity(userUnity):   # Called IsvalidLengthUnity Method to validate user information If user typed is not valid information then...
+                    print("You have not entered a valid length")    # ... Error message
+                else:   # If the information that user type was a valid option...
+                    result = ConvertLength(userLength, userUnity)   # ...convert length and save the information in result variable
+                    oppositeUnity = OppositeLength(userUnity)       #The oppositeLength is called and save the opposity unit in oppositeUnity
+                    print("equivalent length: {0:f}{1}".format(result, oppositeUnity))  # Print the result with opposite unity
 
 Menu()
